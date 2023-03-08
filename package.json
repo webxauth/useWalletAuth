@@ -14,7 +14,7 @@
 		}
 	],
 	"scripts": {
-		"build": "npm run build:cjs && npm run build:esm",
+		"build": "rimraf dist && npm run build:cjs && npm run build:esm",
 		"build:cjs": "tsc -p tsconfig.json --module commonjs --outDir dist/cjs --target es5",
 		"build:esm": "tsc -p tsconfig.json --module esNext --outDir dist/esm --target es6",
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -41,6 +41,7 @@
 	"devDependencies": {
 		"@types/node": "^18.14.6",
 		"@types/react": "^18.0.28",
+		"rimraf": "^4.3.1",
 		"ts-node": "^10.9.1",
 		"typescript": "^4.9.5"
 	},
