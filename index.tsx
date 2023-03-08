@@ -77,7 +77,6 @@ const useWalletAuth = (baseURL: string) => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				credentials: "include",
 				body: JSON.stringify({
 					idToken,
 					provider,
