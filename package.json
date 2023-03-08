@@ -28,11 +28,13 @@
 	"homepage": "https://github.com/webxauth/useWalletAuth#readme",
 	"registry": "https://registry.npmjs.org/",
 	"dependencies": {
-		"@webxauth/types": "^1.0.0",
-		"react": "^18.2.0"
+		"@webxauth/types": "^1.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "^18.14.6",
 		"@types/react": "^18.0.28"
+	},
+	"peerDependencies": {
+		"react": "^17.0.2 || ^18.0.0"
 	}
 }
