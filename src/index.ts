@@ -1,1 +1,1 @@
-export * from "./useWalletAuth";
+export { useWalletAuth } from "./useWalletAuth";

@@ -1,7 +1,7 @@
 import { UserDetail } from "@webxauth-types";
 import { useState } from "react";
 
-const useWalletAuth = (baseURL: string) => {
+export const useWalletAuth = (baseURL: string) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 
@@ -147,5 +147,3 @@ const useWalletAuth = (baseURL: string) => {
 		GetDecodedToken,
 	};
 };
-
-export default useWalletAuth;
