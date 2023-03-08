@@ -29,5 +29,9 @@
 	"registry": "https://registry.npmjs.org/",
 	"dependencies": {
 		"react": "^18.2.0"
+	},
+	"devDependencies": {
+		"@types/node": "^18.14.6",
+		"@types/react": "^18.0.28"
 	}
 }
