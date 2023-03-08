@@ -111,8 +111,8 @@ const useWalletAuth = (baseURL: string) => {
 
 			return decodedToken as UserDetail;
 		} catch (error: any) {
-			setError(`Failed to verify and authenticate: ${error.message}`);
-			throw new Error(`Failed to get signing message: ${error.message}`);
+			setError(`Failed to decode auth token: ${error.message}`);
+			throw new Error(`Failed to decode auth token: ${error.message}`);
 		} finally {
 			setIsLoading(false);
 		}
