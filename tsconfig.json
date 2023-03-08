@@ -8,12 +8,10 @@
 		"strictFunctionTypes": true,
 		"declaration": true,
 		"baseUrl": "../",
-		"typeRoots": ["../"],
-		"types": [],
 		"noEmit": true,
 		"jsx": "react-jsx",
 		"forceConsistentCasingInFileNames": true
 	},
-	"include": ["index.tsx"],
+	"include": ["**/*.ts", "**/*.tsx"],
 	"exclude": ["node_modules"]
 }
