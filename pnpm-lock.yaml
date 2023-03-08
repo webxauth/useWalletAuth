@@ -3,9 +3,11 @@ lockfileVersion: 5.4
 specifiers:
   '@types/node': ^18.14.6
   '@types/react': ^18.0.28
+  '@webxauth/types': ^1.0.0
   react: ^18.2.0
 
 dependencies:
+  '@webxauth/types': 1.0.0
   react: 18.2.0
 
 devDependencies:
@@ -33,6 +35,10 @@ packages:
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
     dev: true
+
+  /@webxauth/types/1.0.0:
+    resolution: {integrity: sha512-WKNQo0mQShReNYLDzopFJqaWx5Jj7hCe0MAYQ1B/TziXblPqxgxTLkc9URyh7w1jtM+Jl4F9d9VNN9OuWaNHxg==}
+    dev: false
 
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
