@@ -12,7 +12,7 @@ const useWalletAuth = (baseURL: string) => {
 			const res = await fetch(`${baseURL}/api/web3`, {
 				method: "POST",
 				headers: {
-					"Content-Type": "text/plain",
+					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({
 					provider,
@@ -47,7 +47,7 @@ const useWalletAuth = (baseURL: string) => {
 			const res = await fetch(`${baseURL}/api/web3/verify`, {
 				method: "POST",
 				headers: {
-					"Content-Type": "text/plain",
+					"Content-Type": "application/json",
 				},
 				body,
 			});
@@ -75,7 +75,7 @@ const useWalletAuth = (baseURL: string) => {
 			const res = await fetch(`${baseURL}/api/generate`, {
 				method: "POST",
 				headers: {
-					"Content-Type": "text/plain",
+					"Content-Type": "application/json",
 				},
 				credentials: "include",
 				body: JSON.stringify({
