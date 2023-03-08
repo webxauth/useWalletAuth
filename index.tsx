@@ -87,8 +87,8 @@ const useWalletAuth = (baseURL: string) => {
 			const { token } = await res.json();
 			return token;
 		} catch (error: any) {
-			setError(`Failed to verify and authenticate: ${error.message}`);
-			throw new Error(`Failed to verify and authenticate: ${error.message}`);
+			setError(`Failed to send ID token: ${error.message}`);
+			throw new Error(`Failed to send ID token: ${error.message}`);
 		} finally {
 			setIsLoading(false);
 		}
