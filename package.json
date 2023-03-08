@@ -2,7 +2,6 @@
 	"name": "@webxauth/usewalletauth",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.ts",
 	"author": "Bonuz",
 	"contributors": [
 		{
@@ -15,6 +14,9 @@
 		}
 	],
 	"scripts": {
+		"build": "npm run build:cjs && npm run build:esm",
+		"build:cjs": "tsc -p tsconfig.json --module commonjs --outDir dist/cjs --target es5",
+		"build:esm": "tsc -p tsconfig.json --module esNext --outDir dist/esm --target es6",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"license": "ISC",
@@ -27,12 +29,20 @@
 	},
 	"homepage": "https://github.com/webxauth/useWalletAuth#readme",
 	"registry": "https://registry.npmjs.org/",
+	"files": [
+		"dist"
+	],
+	"main": "./dist/cjs/index.js",
+	"module": "./dist/esm/index.js",
+	"types": "./dist/esm/index.d.ts",
 	"dependencies": {
 		"@webxauth/types": "^1.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "^18.14.6",
-		"@types/react": "^18.0.28"
+		"@types/react": "^18.0.28",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.9.5"
 	},
 	"peerDependencies": {
 		"react": "^17.0.2 || ^18.0.0"
