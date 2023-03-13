@@ -1,17 +1,18 @@
 {
 	"compilerOptions": {
 		"module": "commonjs",
-		"lib": ["es6"],
+		"lib": ["ESNext", "DOM"],
 		"noImplicitAny": true,
 		"noImplicitThis": true,
 		"strictNullChecks": true,
 		"strictFunctionTypes": true,
 		"declaration": true,
 		"baseUrl": "../",
-		"typeRoots": ["../"],
-		"types": [],
-		"noEmit": true,
-		"forceConsistentCasingInFileNames": true
+		"jsx": "react-jsx",
+		"forceConsistentCasingInFileNames": true,
+		"esModuleInterop": true,
+		"moduleResolution": "node"
 	},
-	"files": ["index.d.ts"]
+	"include": ["**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
 }
