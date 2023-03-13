@@ -1,7 +1,7 @@
 {
 	"name": "@webxauth/usewalletauth",
 	"version": "1.0.0",
-	"description": "",
+	"description": "A React hook to simplify usage of the auth service APIs.",
 	"author": "Bonuz",
 	"contributors": [
 		{
