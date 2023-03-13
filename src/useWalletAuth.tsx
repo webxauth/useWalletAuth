@@ -1,11 +1,15 @@
 import { UserDetail } from "@webxauth-types";
 import { useState } from "react";
 
+type TemporaryToken = string;
 export const useWalletAuth = (baseURL: string) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 
-	const getSigningMessage = async (walletAddress: string, provider: string) => {
+	const getSigningMessage = async (
+		walletAddress: string,
+		provider: string
+	): Promise<string> => {
 		try {
 			setIsLoading(true);
 			setError(null);
@@ -29,11 +33,11 @@ export const useWalletAuth = (baseURL: string) => {
 		}
 	};
 
-	const verifyAndAuthenticate = async (
+	const verifySignature = async (
 		walletAddress: string,
 		provider: string,
 		signature: string
-	) => {
+	): Promise<TemporaryToken> => {
 		try {
 			setIsLoading(true);
 			setError(null);
@@ -56,23 +60,23 @@ export const useWalletAuth = (baseURL: string) => {
 
 			return json.token;
 		} catch (error: any) {
-			setError(`Failed to verify and authenticate: ${error.message}`);
-			throw new Error(`Failed to verify and authenticate: ${error.message}`);
+			setError(`Failed to verify signature: ${error.message}`);
+			throw new Error(`Failed to verify signature: ${error.message}`);
 		} finally {
 			setIsLoading(false);
 		}
 	};
 
-	const sendIdToken = async (
+	const authenticate = async (
 		idToken: string,
 		provider: string,
 		account: string
-	) => {
+	): Promise<{ token: string }> => {
 		try {
 			setIsLoading(true);
 			setError(null);
 
-			const res = await fetch(`${baseURL}/api/generate`, {
+			const res = await fetch(`${baseURL}/api/auth`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -84,17 +88,18 @@ export const useWalletAuth = (baseURL: string) => {
 					userInfo: { walletAddress: account },
 				}),
 			});
-			const { token } = await res.json();
-			return token;
+
+			const data = await res.json();
+			return data as { token: string };
 		} catch (error: any) {
-			setError(`Failed to send ID token: ${error.message}`);
-			throw new Error(`Failed to send ID token: ${error.message}`);
+			setError(`Failed to authenticate: ${error.message}`);
+			throw new Error(`Failed to authenticate: ${error.message}`);
 		} finally {
 			setIsLoading(false);
 		}
 	};
 
-	const GetDecodeAuthToken = async (tokenResonse: string) => {
+	const decodeAuthToken = async (tokenResonse: string) => {
 		try {
 			setIsLoading(true);
 			setError(null);
@@ -117,16 +122,24 @@ export const useWalletAuth = (baseURL: string) => {
 		}
 	};
 
-	const GetDecodedToken = async (signedMessage: string, account: string) => {
+	const authenticateWallet = async (
+		signedMessage: string,
+		account: string,
+		provider: string
+	) => {
 		try {
 			setIsLoading(true);
 			setError(null);
 
-			const token = await verifyAndAuthenticate(account, "evm", signedMessage);
+			const temporaryToken = await verifySignature(
+				account,
+				provider,
+				signedMessage
+			);
 
-			const tokenResonse = await sendIdToken(token, "web3", account);
+			const { token } = await authenticate(temporaryToken, provider, account);
 
-			const decodedToken = await GetDecodeAuthToken(tokenResonse);
+			const decodedToken = await decodeAuthToken(token);
 
 			return decodedToken;
 		} catch (error: any) {
@@ -141,9 +154,9 @@ export const useWalletAuth = (baseURL: string) => {
 		isLoading,
 		error,
 		getSigningMessage,
-		verifyAndAuthenticate,
-		sendIdToken,
-		GetDecodeAuthToken,
-		GetDecodedToken,
+		verifySignature,
+		authenticate,
+		decodeAuthToken,
+		authenticateWallet,
 	};
 };
