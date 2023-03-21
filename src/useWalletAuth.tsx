@@ -99,7 +99,7 @@ export const useWalletAuth = (baseURL: string) => {
 		}
 	};
 
-	const decodeAuthToken = async (tokenResonse: string) => {
+	const decodeAuthToken = async (token: string) => {
 		try {
 			setIsLoading(true);
 			setError(null);
@@ -108,8 +108,8 @@ export const useWalletAuth = (baseURL: string) => {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded",
+					"Authorization": `Bearer ${token}`
 				},
-				body: `token=${tokenResonse}`,
 			});
 			const decodedToken = await res.json();
 
