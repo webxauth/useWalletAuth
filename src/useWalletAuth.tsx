@@ -1,4 +1,4 @@
-import { UserDetail } from "@webxauth-types";
+import { UserDetail } from "@webxauth/types";
 import { useState } from "react";
 
 type TemporaryToken = string;
